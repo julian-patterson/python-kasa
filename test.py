@@ -19,11 +19,11 @@ async def nightmode():  # a scene
     while True:
         await bulb.update()
         await bulb2.update()
-        await bulb.set_color_temp(2500, brightness=10)
-        await bulb2.set_color_temp(2500, brightness=10)
+        await bulb.set_color_temp(2700, brightness=10)
+        await bulb2.set_color_temp(2700, brightness=10)
 
 
-async def scene(color):  # a scene
+async def scene(color):  # a scene // rotate through colors using a range
     if color == 'blue':
         await bulb.update()
         await bulb2.update()
@@ -47,8 +47,15 @@ async def scene(color):  # a scene
 async def gradual_light(time: int):
     await bulb.update()
     await bulb2.update()
-    await bulb.set_color_temp(2500, transition=(time*1000))
-    await bulb2.set_color_temp(2500, transition=(time*1000))
+    await bulb.set_color_temp(2700, transition=(time*1000))
+    await bulb2.set_color_temp(2700, transition=(time*1000))
+
+
+async def set_brightness(percentage):
+    await bulb.update()
+    await bulb2.update()
+    await bulb.set_brightness(percentage)
+    await bulb2.set_brightness(percentage)
 
 
 async def off():
